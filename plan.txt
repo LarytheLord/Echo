@@ -1,0 +1,58 @@
+Project Plan: "Echo" - The Privacy-First Social Audio App
+
+  Phase 1: Project Initialization & Setup (The Foundation)
+
+   1. Initialize Expo App: I'll start by creating a new Expo project using the command line. This will create the basic file structure.
+   2. Install Core Dependencies: I will then install the essential libraries we'll need:
+       * expo-location: To get the user's GPS coordinates for placing Echos.
+       * react-native-maps: To display the primary map interface.
+       * expo-av: For handling audio recording and playback.
+   3. Permissions: I'll ensure the app.json file is configured to request necessary permissions for location and microphone access on both iOS and
+      Android.
+
+  Phase 2: Building the Core UI - The Map
+
+   1. Map Component: I'll create a new React component, MapView.js, that will render a full-screen map using react-native-maps.
+   2. User Location: On app load, I will use expo-location to request permission and get the user's current location. The map will be centered on
+      these coordinates.
+   3. Mock Data: To start, I'll create a local file, mock-echos.js, containing an array of sample Echo data. Each object will have an id,
+      coordinate (latitude/longitude), and a soundUri pointing to a placeholder sound file.
+   4. Display Echos: I will read the mock data and render custom markers on the map for each Echo. This will immediately give us a visual
+      representation of the app's core concept.
+
+  Phase 3: Implementing Audio Functionality
+
+   1. Recording:
+       * I'll add a "Record" button to the UI.
+       * On press, the app will request microphone permissions (if not already granted).
+       * Using expo-av, I'll implement the logic to start and stop audio recording. The recording will be saved to the device's local file
+         system.
+   2. Playback:
+       * When a user taps on an Echo marker on the map, I'll use expo-av to play the audio associated with it.
+       * I'll add a simple visual indicator to show which Echo is currently playing.
+   3. Creating an Echo:
+       * After a recording is finished, a confirmation UI will appear.
+       * Upon confirmation, the app will get the user's current location and create a new Echo object, adding it to our (currently mock) data
+         source. The map will then update to show the new Echo marker.
+
+  Phase 4: Integrating Hackathon SDKs
+
+   1. Zoho Apptics Integration:
+       * I'll follow the Zoho Apptics React Native guide to install and initialize the SDK.
+       * I will then add custom analytics events to track meaningful interactions without compromising privacy:
+           * echo_created: Fired when a user successfully drops a new Echo.
+           * echo_played: Fired when an Echo is played.
+           * session_start: To track active users.
+   2. Adapty SDK Integration (for Premium Features):
+       * I'll install and configure the Adapty SDK for React Native.
+       * I'll design a simple "premium" feature, such as the ability to use a different color for your Echo markers on the map.
+       * I'll add a "Settings" or "Upgrade" button in the app that, when tapped, presents an Adapty paywall to unlock this feature. This directly
+         addresses the monetization judging criteria.
+
+  Phase 5: UX/UI Polish & Final Touches
+
+   1. Styling: I'll apply a clean, modern, and slightly mysterious theme. A dark mode for the map would be fitting. I'll design a custom icon for
+      the Echo markers.
+   2. Onboarding: I'll create a simple, one-time welcome screen that quickly explains the concept of finding and leaving audio Echos.
+   3. Refinement: I'll add small but important details, like haptic feedback when interacting with buttons and smooth animations for map
+      movements.
